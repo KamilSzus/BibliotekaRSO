@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
 
 namespace Biblioteka
 {
@@ -25,6 +21,7 @@ namespace Biblioteka
     [DataContract]
     public class CompositeType
     {
+        //tutaj usawiac gettery i settery dla biblioteki
         bool boolValue = true;
         string stringValue = "Hello ";
 
