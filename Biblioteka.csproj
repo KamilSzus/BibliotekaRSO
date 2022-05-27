@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="Author.cs" />
     <Compile Include="Book.cs" />
+    <Compile Include="Bookshelf.cs" />
+    <Compile Include="ILbraryOperations.cs" />
     <Compile Include="IService1.cs" />
     <Compile Include="Library.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
