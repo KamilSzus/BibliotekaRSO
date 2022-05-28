@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Biblioteka
 {
+
     public class Library : ILbraryOperations
     {
         [DataMember]
@@ -31,12 +33,26 @@ namespace Biblioteka
 
         public Book GetBookById(int id)
         {
-            return books.FirstOrDefault(x => x.BookId == id);
+            if (books.FirstOrDefault(x => x.BookId == id) == null)
+            {
+                throw new FaultException<ErrorHandler>(new ErrorHandler("id not found"), new FaultReason("Invalid ID"));
+            }
+            else
+            {
+                return books.FirstOrDefault(x => x.BookId == id);
+            }
         }
 
         public List<Book> GetBookByTitle(string title)
         {
-            return books.FindAll(x => x.Title.Contains(title));
+            if(books.FindAll(x => x.Title.Contains(title)) == null)
+            {
+                throw new FaultException<ErrorHandler>(new ErrorHandler("title not found"), new FaultReason("Invalid TITLE"));
+            }
+            else
+            {
+                return books.FindAll(x => x.Title.Contains(title));
+            }
         }
     }
 }
