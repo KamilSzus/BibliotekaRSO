@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Biblioteka
 {
@@ -14,6 +10,6 @@ namespace Biblioteka
         Book GetBookById(int id);
 
         [OperationContract]
-        Book GetBookByTitle(string title);
+        List<Book> GetBookByTitle(string title);
     }
 }
