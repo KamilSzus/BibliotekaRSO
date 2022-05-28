@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace Biblioteka
 {
-    [DataContractAttribute]
+    [DataContract]
     public class Book
     {
-        [DataMemberAttribute]
+        [DataMember]
         public int BookId
         {
             get;
             set;
         }
-        [DataMemberAttribute]
+        [DataMember]
         public string Title
         {
             get;
             set;
         }
-        [DataMemberAttribute]
+        [DataMember]
         public Author Author
         {
             get;

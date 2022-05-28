@@ -9,6 +9,7 @@ namespace Biblioteka
 {
     public class Library : ILbraryOperations
     {
+        [DataMember]
         List<Book> books = new List<Book>()
         {
             new Book(1,"Władca Pierścieni",new Author("John Ronald Reuel","Tolkien")),
