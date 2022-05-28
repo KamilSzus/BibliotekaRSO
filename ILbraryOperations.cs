@@ -11,5 +11,7 @@ namespace Biblioteka
 
         [OperationContract]
         List<Book> GetBookByTitle(string title);
+        [OperationContract]
+        string dump(Book book);
     }
 }

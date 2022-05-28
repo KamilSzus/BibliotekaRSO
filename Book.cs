@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,16 +24,16 @@ namespace Biblioteka
             set;
         }
         [DataMember]
-        public Author Author
+        public List<Author> Authors
         {
             get;
             set;
         }
-        public Book(int bookId,string title, Author author)
+        public Book(int bookId,string title, List<Author> authors)
         {
             BookId = bookId;
             Title = title;
-            Author = author;
+            Authors = authors;
         }
     }
 }
