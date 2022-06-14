@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Biblioteka
 {
@@ -45,14 +43,33 @@ namespace Biblioteka
 
         public List<Book> GetBookByTitle(string title)
         {
-            if(books.FindAll(x => x.Title.Contains(title)) == null)
+
+            List<Book> bookList = books.FindAll(book =>
             {
+                Boolean titleBool = book.Title.Contains(title);
+                Boolean authorBool = book.Authors.FindAll(author =>
+                {
+                    Boolean nameBool = author.Name.Contains(title);
+                    Boolean surnameBool = author.Surname.Contains(title);
+                    return nameBool || surnameBool;
+                }).Count > 0;
+                return titleBool || authorBool;
+            });
+
+            if (bookList.Count() == 0) {
                 throw new FaultException<ErrorHandler>(new ErrorHandler("title not found"), new FaultReason("Invalid TITLE"));
             }
-            else
-            {
-                return books.FindAll(x => x.Title.Contains(title));
-            }
+
+            return bookList;
+
+            // if (books.FindAll(x => x.Title.Contains(title)) == null)
+            // {
+            //     throw new FaultException<ErrorHandler>(new ErrorHandler("title not found"), new FaultReason("Invalid TITLE"));
+            // }
+            // else
+            // {
+            //     return books.FindAll(x => x.Title.Contains(title));
+            // }
         }
     }
 }
