@@ -13,6 +13,15 @@ namespace Biblioteka
         [OperationContract]
         [FaultContract(typeof(ErrorHandler))]
         List<Book> GetBookByTitle(string title);
+
+        [OperationContract]
+        [FaultContract(typeof(ErrorHandler))]
+        List<Book> GetBookByAuthor(string author);
+
+        [OperationContract]
+        [FaultContract(typeof(ErrorHandler))]
+        List<Book> GetBooksWithMultiplyAuthor();
+
         [OperationContract]
         string dump(Book book);
     }

@@ -29,6 +29,27 @@ namespace Biblioteka
             return book.Title + "\nAuthors:\n" + author;
         }
 
+        public List<Book> GetBookByAuthor(string author)
+        {
+            List<Book> filteredBooks = books.FindAll(book =>
+            {
+                Boolean authorBool = book.Authors.FindAll(author1 =>
+                {
+                    Boolean nameBool = author1.Name.Contains(author);
+                    Boolean surnameBool = author1.Surname.Contains(author);
+                    return nameBool || surnameBool;
+                }).Count > 0;
+                return authorBool;
+                });
+
+            if(filteredBooks.Count < 0)
+            {
+                throw new FaultException<ErrorHandler>(new ErrorHandler("author not found"), new FaultReason("Invalid AUTHOR"));
+            }
+
+            return filteredBooks;
+        }
+
         public Book GetBookById(int id)
         {
             if (books.FirstOrDefault(x => x.BookId == id) == null)
@@ -70,6 +91,11 @@ namespace Biblioteka
             // {
             //     return books.FindAll(x => x.Title.Contains(title));
             // }
+        }
+
+        public List<Book> GetBooksWithMultiplyAuthor()
+        {
+            return books.FindAll(book => book.Authors.Count > 1);
         }
     }
 }
