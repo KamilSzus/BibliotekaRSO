@@ -82,15 +82,6 @@ namespace Biblioteka
             }
 
             return bookList;
-
-            // if (books.FindAll(x => x.Title.Contains(title)) == null)
-            // {
-            //     throw new FaultException<ErrorHandler>(new ErrorHandler("title not found"), new FaultReason("Invalid TITLE"));
-            // }
-            // else
-            // {
-            //     return books.FindAll(x => x.Title.Contains(title));
-            // }
         }
 
         public List<Book> GetBooksWithMultiplyAuthor()
